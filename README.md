@@ -1,5 +1,8 @@
 # Simple Encrypt Tool
-## Main Goal
+
+## Why pyEncrypt
+- [x] store password in encrypted form, instead of purely store them in memorandum, add even upload to icloud (lollll) 
+## Features
 - [x] locally config public key & private key
 - [x] used in command line, free to get & set password
 - [x] memorize in disk, output encrypted code
