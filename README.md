@@ -80,4 +80,5 @@ python encrypt.py --get google
 ## TODOs:
 - [ ] [ **feat** ] The program currently causes error when file not exist or not in json format. Automatically generate empty json file.
 - [ ] [ **feat** ] Release binary version to make it safer.
+- [ ] [ **fix** ] Solve the problem of encoding. Some PCs have default coding style rather than utf-8. Should all be adjusted specifically.
 - [ ] [ **doc** ] Update doc
