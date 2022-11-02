@@ -1,6 +1,7 @@
 import rsa
 import json
 import argparse
+import os
 
 class client:
 
@@ -16,6 +17,7 @@ class client:
         print("----- loading saved passwd -----")
         f = open(self.dataFile)
         self.dict = json.load(f)
+        f.close()
         print("----- finished loading passwd -----")
         # print(self.dict)
             
@@ -27,7 +29,7 @@ class client:
         priKeyPath = ssh_folder + "\\id_rsa"
         self.privKey = rsa.PrivateKey.load_pkcs1(open(priKeyPath,"r").read())
         self.pubKey = rsa.PublicKey.load_pkcs1(open(pubKeyPath,"r").read())
-        
+        f.close()
 
     def setNewPasswd(self,key,rawValue):
         print("------- encrypting account %s, rawValue %s ------"%(key,rawValue))
@@ -45,8 +47,12 @@ class client:
 
     def syncToOutputFile(self):
         print("------ sync dict to disk ------")
-        with open(self.outputFile,"w",encoding="utf-8") as outfile:
+        tmpfile = self.outputFile+"__tmp"
+        with open(tmpfile,"w",encoding="utf-8") as outfile:
             json.dump(self.dict,outfile)
+        outfile.close()
+        os.remove(self.outputFile)
+        os.rename(tmpfile,self.outputFile)
         print("----- finished sync disk -----")
 
     def syncToConfigFile(self):
