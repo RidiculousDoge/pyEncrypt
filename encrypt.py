@@ -51,8 +51,7 @@ class client:
         with open(tmpfile,"w",encoding="utf-8") as outfile:
             json.dump(self.dict,outfile)
         outfile.close()
-        os.remove(self.outputFile)
-        os.rename(tmpfile,self.outputFile)
+        os.replace(tmpfile,self.outputFile)
         print("----- finished sync disk -----")
 
     def syncToConfigFile(self):
